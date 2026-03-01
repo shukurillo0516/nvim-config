@@ -376,7 +376,6 @@ return {
 			--   },
 			-- }
 
-
 			require("shukurillo.autoformat").setup()
 
 			require("lsp_lines").setup()
