@@ -24,6 +24,7 @@ local setup = function()
 			javascriptreact = { "prettier" },
 			typescript = { "prettier" },
 			typescriptreact = { "prettier" },
+			python = { "black" },
 		},
 	})
 
@@ -36,10 +37,20 @@ local setup = function()
 		},
 	}
 
+	vim.keymap.set("n", "<leader>f", function()
+		require("conform").format({ async = true })
+	end)
+
 	vim.api.nvim_create_autocmd("BufWritePre", {
 		group = vim.api.nvim_create_augroup("custom-conform", { clear = true }),
 		callback = function(args)
 			local ft = vim.bo.filetype
+
+			-- Manual formatting for python
+			if ft == "python" then
+				return
+			end
+
 			if ft == "blade" then
 				require("conform").format({
 					bufnr = args.buf,
