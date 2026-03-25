@@ -48,3 +48,6 @@ vim.keymap.set("n", "<C-h>", "<cmd> TmuxNavigatorLeft<CR>", { desc = "window lef
 vim.keymap.set("n", "<C-k>", "<cmd> TmuxNavigatorUp<CR>", { desc = "window up" })
 vim.keymap.set("n", "<C-l>", "<cmd> TmuxNavigatorRight<CR>", { desc = "window right" })
 vim.keymap.set("n", "<C-j>", "<cmd> TmuxNavigatorDown<CR>", { desc = "window down" })
+
+-- For opencode
+vim.keymap.set("t", "jk", [[<C-\><C-n>]], { silent = true })

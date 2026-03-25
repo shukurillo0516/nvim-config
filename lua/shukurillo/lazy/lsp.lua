@@ -358,36 +358,19 @@ return {
 				end,
 			})
 
-			-- require("typescript-tools").setup {
-			--   -- on_attach = on_attach,
-			--   settings = {
-			--     tsserver_plugins = {
-			--       "effect-language-service",
-			--     },
-			--     tsserver_file_preferences = {
-			--       includeInlayParameterNameHints = "all",
-			--       includeInlayParameterNameHintsWhenArgumentMatchesName = true,
-			--       includeInlayFunctionParameterTypeHints = true,
-			--       includeInlayVariableTypeHints = true,
-			--       includeInlayPropertyDeclarationTypeHints = true,
-			--       includeInlayFunctionLikeReturnTypeHints = true,
-			--       includeInlayEnumMemberValueHints = true,
-			--     },
-			--   },
-			-- }
-
 			require("shukurillo.autoformat").setup()
 
 			require("lsp_lines").setup()
-			vim.diagnostic.config({ virtual_text = true, virtual_lines = false })
+			vim.diagnostic.config({ virtual_text = false, virtual_lines = false })
 
 			vim.keymap.set("", "<leader>l", function()
 				local config = vim.diagnostic.config() or {}
-				if config.virtual_text then
-					vim.diagnostic.config({ virtual_text = false, virtual_lines = true })
-				else
-					vim.diagnostic.config({ virtual_text = true, virtual_lines = false })
-				end
+				vim.diagnostic.config({ virtual_text = not config.virtual_text })
+				-- if config.virtual_text then
+				-- 	vim.diagnostic.config({ virtual_text = false, virtual_lines = true })
+				-- else
+				-- 	vim.diagnostic.config({ virtual_text = true, virtual_lines = false })
+				-- end
 			end, { desc = "Toggle lsp_lines" })
 		end,
 	},
